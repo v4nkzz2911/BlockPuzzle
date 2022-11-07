@@ -221,6 +221,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
     }
 
     public void OnEndDrag(PointerEventData eventData)
+
     {
         this.GetComponent<RectTransform>().localScale = _shapeStartScale;
         GameEvent.CheckIfShapeCanbePlaced();

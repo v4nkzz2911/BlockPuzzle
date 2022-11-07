@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4611710588290198396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4611710588290198399}
+  - component: {fileID: 4611710588290198398}
+  m_Layer: 5
+  m_Name: Shape
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4611710588290198399
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611710588290198396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4611710588290198398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611710588290198396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f3273d08acc204692f8c1fb9c30ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shapeSelectedScale: {x: 0.8, y: 0.8, z: 0.8}
+  offset: {x: 0, y: 700}
+  Colors:
+  - {fileID: 2223023966469527084, guid: e6c6d29abf1af1d4096c3633da751ff0, type: 3}
+  - {fileID: 2223023966469527084, guid: 95bd2e960cf5acb479b07aae4b39cc51, type: 3}
+  - {fileID: 2223023966469527084, guid: c6769513a32409a4ab5cc223310e6abb, type: 3}
+  - {fileID: 2223023966469527084, guid: 03d9e8a5e4e82fe4295b7c357df5a756, type: 3}
+  - {fileID: 2223023966469527084, guid: f5dd80616bfae7b4abe637e9920f65f7, type: 3}
+  - {fileID: 2223023966469527084, guid: 13d730f83640ded40bb8416a5addef40, type: 3}
+  - {fileID: 2223023966469527084, guid: 347edb4a92628c24ca16a53d17a8f236, type: 3}
+  - {fileID: 2223023966469527084, guid: 9a20652ba48765b4b95d5eb137d4aea5, type: 3}
+  squareShapeImage: {fileID: 2223023966469527084, guid: 347edb4a92628c24ca16a53d17a8f236, type: 3}
+  CurrentShapeData: {fileID: 11400000, guid: 089fcd282de374147aab7646cb24d320, type: 2}

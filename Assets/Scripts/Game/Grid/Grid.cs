@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
@@ -41,6 +42,8 @@ public class Grid : MonoBehaviour
                 _gridSquares[_gridSquares.Count - 1].transform.SetParent(this.transform);
                 _gridSquares[_gridSquares.Count - 1].transform.localScale = new Vector3(squareScale, squareScale, squareScale);
                 _gridSquares[_gridSquares.Count - 1].GetComponent<GridSquare>().SetImage(square_index % 2 == 0);
+
+                //_gridSquares[_gridSquares.Count - 1].GetComponent<GridSquare>().Index = square_index;
                 square_index++;
             }    
         }    
@@ -158,10 +161,10 @@ public class Grid : MonoBehaviour
         foreach (var column in _lineIndicator.columnIndexes)
         {
             lines.Add(_lineIndicator.GetVerticalLine(column));
-
+            
         }
         
-       
+
         //row
         for (int row = 0; row < 8; row++)
         {
@@ -176,12 +179,12 @@ public class Grid : MonoBehaviour
 
 
 
-        /*var completedLine= CheckIfSquaresAreCompleted(lines);
+        var completedLine= CheckIfSquaresAreCompleted(lines);
 
         if (completedLine > 2)
         {
             //bonus
-        }*/
+        }
 
         //score
     }
@@ -191,25 +194,32 @@ public class Grid : MonoBehaviour
         List<int[]> completedLines = new List<int[]>();
         var linesCompleted = 0;
 
+        Debug.Log("LineCheckInData:");
         foreach (var line in data)
         {
-            var lineCompleted = true;
+            
+            ouputArray(line);
+
+            //var lineCompleted = false;
+            var n = 0;
             foreach (var squareIndex in line)
             {
                 var comp = _gridSquares[squareIndex].GetComponent<GridSquare>();
-                if (comp.SquareOccupied == false)
+                if (comp.SquareOccupied == true)
                 {
-                    lineCompleted = false;
+                    n++;
 
                 }
-                if (lineCompleted)
+                if (n==8)
                 {
                     completedLines.Add(line);
                 }
             }     
         }
+        Debug.Log(completedLines.Count);
         foreach (var line in completedLines)
         {
+            ouputArray(line);
             var completed = false;
             foreach (var squareIndex in line)
             {
@@ -240,6 +250,17 @@ public class Grid : MonoBehaviour
     }    
     // Start is called before the first frame update
    
+    void ouputArray(int[] a)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < a.Length; i++)
+        {
+            sb.Append(a[i]);
+            sb.Append(" ");
+        }
+        Debug.Log(sb.ToString());
+    }
+
     void Start()
     {
         _lineIndicator = GetComponent<LineIndicator>();

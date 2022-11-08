@@ -10,6 +10,10 @@ public class GridSquare : MonoBehaviour
     public Image normalImage;
     public List<Sprite> normalImages;
 
+    public int Index;
+    public bool DebugSelected;
+    public bool DebugSquareOccupied;
+
     public bool Selected { get; set; }
     public int SquareIndex { get; set; }
     public bool SquareOccupied { get; set; }
@@ -99,6 +103,8 @@ public class GridSquare : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Index = SquareIndex;
+        DebugSelected = Selected;
+        DebugSquareOccupied = SquareOccupied;
     }
 }

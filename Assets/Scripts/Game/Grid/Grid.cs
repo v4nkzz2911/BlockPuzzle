@@ -187,6 +187,10 @@ public class Grid : MonoBehaviour
         }
 
         //score
+        var totalScore = 10 * completedLine;
+        GameEvent.AddScore(totalScore);
+
+        CheckIfPlayerLost();
     }
 
     private int CheckIfSquaresAreCompleted(List<int[]> data)
@@ -194,11 +198,11 @@ public class Grid : MonoBehaviour
         List<int[]> completedLines = new List<int[]>();
         var linesCompleted = 0;
 
-        Debug.Log("LineCheckInData:");
+        
         foreach (var line in data)
         {
             
-            ouputArray(line);
+            
 
             //var lineCompleted = false;
             var n = 0;
@@ -261,6 +265,120 @@ public class Grid : MonoBehaviour
         Debug.Log(sb.ToString());
     }
 
+    private void CheckIfPlayerLost()
+    {
+        var validShapes = 0;
+        for (var index =0; index< shapeStorage.shapeList.Count; index++)
+        {
+            var isShapeActive = shapeStorage.shapeList[index].IsAnyOfShapeSquareActive();
+            var isShapeOnStartPos = shapeStorage.shapeList[index].IsOnStartPosition();
+            if (isShapeActive && isShapeOnStartPos)
+                if (CheckIdShapeCanBePlacedOnGrid(shapeStorage.shapeList[index]))
+                {
+                    shapeStorage.shapeList[index]?.ActivateShape();
+                    validShapes++;
+                }
+        }
+        if (validShapes == 0)
+        {
+            GameEvent.GameOver(false);
+            Debug.Log("GAME OVER");
+        }
+    }
+
+    private bool CheckIdShapeCanBePlacedOnGrid(Shape currentShape)
+    {
+        var currentShapeData = currentShape.CurrentShapeData;
+        var shapeColumns = currentShapeData.columns;
+        var shapeRows = currentShapeData.rows;
+
+        //All indexes of filled up squares
+
+        List<int> originalShapeFilledUpSquares = new List<int>();
+        var squareIndex = 0;
+
+        Debug.Log("Check Shape");
+
+        for (int rowIndex = 0; rowIndex < shapeRows; rowIndex++)
+        {
+            for (int columnIndex = 0; columnIndex < shapeColumns; columnIndex++)
+            {
+                if (currentShapeData.board[rowIndex].column[columnIndex])
+                {
+                    originalShapeFilledUpSquares.Add(squareIndex);
+                    Debug.Log("Index Check: " + squareIndex);
+                }
+                squareIndex++;
+                
+            }
+        }
+
+        if (currentShape.TotalSquareNumber != originalShapeFilledUpSquares.Count)
+        {
+            Debug.LogError("Number of Filled up Square are not the same as the original shape have");
+        }
+
+        var squareList = GetAllSquareCombination(shapeColumns, shapeRows);
+
+        bool canBePlaced = false;
+        foreach (var number in squareList)
+        {
+            bool shapeCanBePlacedOnTheBoard = true;
+            foreach (var squareIndexToCheck in originalShapeFilledUpSquares)
+            {
+                var comp = _gridSquares[number[squareIndexToCheck]].GetComponent<GridSquare>();
+                if (comp.SquareOccupied == true)
+                {
+                    shapeCanBePlacedOnTheBoard = false;
+                }
+            }
+
+            if (shapeCanBePlacedOnTheBoard)
+            {
+                canBePlaced = true;
+            }
+        }
+        return canBePlaced;
+    }
+
+    private List<int[]> GetAllSquareCombination(int columns, int rows)
+    {
+        var squareList = new List<int[]>();
+        var lastColumnIndex = 0;
+        var lastRowIndex = 0;
+
+        int safeIndex = 0;
+
+        while (lastRowIndex + (rows - 1) < 8)
+        {
+            var rowData = new List<int>();
+            for (var row = lastRowIndex; row < lastRowIndex + rows; row++)
+            {
+                for (int column = lastColumnIndex; column < lastColumnIndex + columns; column++)
+                {
+                    rowData.Add(_lineIndicator.line_data[row, column]);
+                }
+            }
+
+            squareList.Add(rowData.ToArray());
+
+            lastColumnIndex++;
+
+            if (lastColumnIndex + (columns - 1) >= 8)
+            {
+                lastRowIndex++;
+                lastColumnIndex = 0;
+            }
+
+            safeIndex++;
+            if (safeIndex > 100)
+            {
+                break;
+            }
+
+        }
+        return squareList;
+    }
     void Start()
     {
         _lineIndicator = GetComponent<LineIndicator>();

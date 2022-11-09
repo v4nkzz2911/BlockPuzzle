@@ -354,7 +354,7 @@ public class Grid : MonoBehaviour
             var rowData = new List<int>();
             for (var row = lastRowIndex; row < lastRowIndex + rows; row++)
             {
-                for (int column = 0; column < lastColumnIndex + columns; column++)
+                for (int column = lastColumnIndex; column < lastColumnIndex + columns; column++)
                 {
                     rowData.Add(_lineIndicator.line_data[row, column]);
                 }

@@ -271,15 +271,17 @@ public class Grid : MonoBehaviour
         for (var index =0; index< shapeStorage.shapeList.Count; index++)
         {
             var isShapeActive = shapeStorage.shapeList[index].IsAnyOfShapeSquareActive();
-            if(CheckIdShapeCanBePlacedOnGrid(shapeStorage.shapeList[index]) && isShapeActive)
-            {
-                shapeStorage.shapeList[index]?.ActivateShape();
-                validShapes++;
-            }
+            var isShapeOnStartPos = shapeStorage.shapeList[index].IsOnStartPosition();
+            if (isShapeActive && isShapeOnStartPos)
+                if (CheckIdShapeCanBePlacedOnGrid(shapeStorage.shapeList[index]))
+                {
+                    shapeStorage.shapeList[index]?.ActivateShape();
+                    validShapes++;
+                }
         }
         if (validShapes == 0)
         {
-            //GameEvent.GameOver(false);
+            GameEvent.GameOver(false);
             Debug.Log("GAME OVER");
         }
     }
@@ -295,6 +297,8 @@ public class Grid : MonoBehaviour
         List<int> originalShapeFilledUpSquares = new List<int>();
         var squareIndex = 0;
 
+        Debug.Log("Check Shape");
+
         for (int rowIndex = 0; rowIndex < shapeRows; rowIndex++)
         {
             for (int columnIndex = 0; columnIndex < shapeColumns; columnIndex++)
@@ -302,14 +306,16 @@ public class Grid : MonoBehaviour
                 if (currentShapeData.board[rowIndex].column[columnIndex])
                 {
                     originalShapeFilledUpSquares.Add(squareIndex);
+                    Debug.Log("Index Check: " + squareIndex);
                 }
                 squareIndex++;
+                
             }
         }
 
         if (currentShape.TotalSquareNumber != originalShapeFilledUpSquares.Count)
         {
-            Debug.LogError("< storage");
+            Debug.LogError("Number of Filled up Square are not the same as the original shape have");
         }
 
         var squareList = GetAllSquareCombination(shapeColumns, shapeRows);
@@ -356,7 +362,9 @@ public class Grid : MonoBehaviour
 
             squareList.Add(rowData.ToArray());
 
-            if (lastColumnIndex + (columns + 1) >= 8)
+            lastColumnIndex++;
+
+            if (lastColumnIndex + (columns - 1) >= 8)
             {
                 lastRowIndex++;
                 lastColumnIndex = 0;

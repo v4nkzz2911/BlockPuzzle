@@ -281,7 +281,7 @@ public class Grid : MonoBehaviour
         }
         if (validShapes == 0)
         {
-            GameEvent.GameOver(false);
+            GameEvent.GameOver(Score.newBestScore);
             Debug.Log("GAME OVER");
         }
     }

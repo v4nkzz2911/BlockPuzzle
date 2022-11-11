@@ -10,7 +10,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     public List<GameObject> Colors;
 
-    //[HideInInspector]
+    [HideInInspector]
     public GameObject squareShapeImage;
 
     [HideInInspector]
@@ -107,8 +107,8 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     public void CreateShape(ShapeData shapeData)
     {
-        /*var random = UnityEngine.Random.Range(0, Colors.Count);
-        squareShapeImage = Colors[random];*/
+        var random = UnityEngine.Random.Range(0, Colors.Count);
+        squareShapeImage = Colors[random];
 
 
 

@@ -10,7 +10,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     public List<GameObject> Colors;
 
-    //[HideInInspector]
+    [HideInInspector]
     public GameObject squareShapeImage;
 
     [HideInInspector]
@@ -107,8 +107,8 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     public void CreateShape(ShapeData shapeData)
     {
-        /*var random = UnityEngine.Random.Range(0, Colors.Count);
-        squareShapeImage = Colors[random];*/
+        var random = UnityEngine.Random.Range(0, Colors.Count);
+        squareShapeImage = Colors[random];
 
 
 
@@ -196,12 +196,13 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        this.GetComponent<RectTransform>().localScale = _shapeStartScale;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        this.GetComponent<RectTransform>().localScale = _shapeStartScale;
+        GameEvent.CheckIfShapeCanbePlaced();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -229,7 +230,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        this.GetComponent<RectTransform>().localScale = shapeSelectedScale;
     }
 
     private void MoveShapeToStartPosition()

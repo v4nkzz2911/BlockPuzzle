@@ -224,7 +224,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9126dcf0d7ee87b449811329c7eb12f3, type: 2}
     - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
       propertyPath: shapeSelectedScale.x
-      value: 0.8
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
+      propertyPath: shapeSelectedScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
+      propertyPath: shapeSelectedScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4611710588290198399, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
       propertyPath: m_Pivot.x
@@ -782,7 +790,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9126dcf0d7ee87b449811329c7eb12f3, type: 2}
     - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
       propertyPath: shapeSelectedScale.x
-      value: 0.8
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
+      propertyPath: shapeSelectedScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
+      propertyPath: shapeSelectedScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4611710588290198399, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
       propertyPath: m_Pivot.x
@@ -2496,7 +2512,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9126dcf0d7ee87b449811329c7eb12f3, type: 2}
     - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
       propertyPath: shapeSelectedScale.x
-      value: 0.8
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
+      propertyPath: shapeSelectedScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611710588290198398, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
+      propertyPath: shapeSelectedScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4611710588290198399, guid: 8598ab68683f0294e863e891e74ffe1e, type: 3}
       propertyPath: m_Pivot.x

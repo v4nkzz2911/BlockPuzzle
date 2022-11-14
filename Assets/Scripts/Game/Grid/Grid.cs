@@ -135,6 +135,7 @@ public class Grid : MonoBehaviour
 
             if (shapeLeft == 0)
             {
+                GameEvent.SetShapeInactive();
                 GameEvent.RequestNewShapes();
             }
             else

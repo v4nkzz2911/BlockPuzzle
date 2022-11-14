@@ -48,6 +48,18 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
         GameEvent.SetShapeInactive -= SetShapeInactive;
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < _currentShape.Count; i++)
+        {
+            if (_currentShape[i] == null)
+            {
+                _currentShape.RemoveAt(i);
+            }
+        }
+    }
+
+
 
     public bool IsOnStartPosition()
     {
@@ -72,6 +84,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
             {
                 square?.GetComponent<ShapeSquare>().DeactivateShape();
             }
+
         }
         _shapeActive = false;
     }
@@ -83,7 +96,10 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
             foreach (var square in _currentShape)
             {
                 square.gameObject.SetActive(false);
+                Destroy(square);
             }
+
+            
         }
     }
 
@@ -94,6 +110,7 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
             foreach (var square in _currentShape)
             {
                 square?.GetComponent<ShapeSquare>().ActivateShape();
+                
             }
         }
         _shapeActive = true;
@@ -114,6 +131,8 @@ public class Shape : MonoBehaviour, IPointerClickHandler, IPointerUpHandler, IBe
 
         CurrentShapeData = shapeData;
         TotalSquareNumber = GetNumberOfSquares(shapeData);
+
+        
 
         while (_currentShape.Count <= TotalSquareNumber)
         {
